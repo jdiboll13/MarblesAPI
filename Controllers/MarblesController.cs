@@ -27,21 +27,32 @@ namespace MarblesAPI.Controllers
             return marble;
         }
 
+        // Get api/marbles/all
+        [Route("/api/marbles/all")]
+        public List<MarblesModel> GetAll()
+        {
+            var marble = new MarblesModel();
+            List<MarblesModel> marbles = marble.GetMarbles();
+            return marbles;
+        }
+
         // POST api/marbles
         [HttpPost]
-        public List<MarblesModel> Post([FromForm]int id,string color)
+        public IActionResult Add([FromForm]string color)
         {
             var marble = new MarblesModel();
             List<MarblesModel> marbles = marble.GetMarbles();
             var newMarble = new MarblesModel
             {
-                ID = id++,
+                ID = marbles.Count()+1,
                 Color = color
             };
             marbles.Add(newMarble);
-            Console.WriteLine(newMarble);
-            Console.WriteLine(marbles);
-            return marbles;
+            foreach (var item in marbles)
+            {
+                Console.WriteLine(item);
+            }
+            return RedirectToAction("GetAll");
 
         }
     }

@@ -71,5 +71,9 @@ namespace MarblesAPI.Models
             MarblesList.Add(Gray);
             return MarblesList;
         }
+        public override string ToString()
+        {
+            return $"Marble: {ID} is of the color {Color}";
+        }
     }
 }
