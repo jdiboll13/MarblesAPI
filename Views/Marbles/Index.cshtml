@@ -1,0 +1,12 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Give me a new marble to add to the bag:</h2>
+<form asp-controller="Marbles" asp-action="Post" method="Post">
+    <input type="text" name="color" placeholder="Color">
+    <button type="submit">Submit</button>
+</form>
+
+<p>Click the Button to get a random marble.</p>
+<button type="button" onclick="location.href='/api/marbles'">Random</button>
